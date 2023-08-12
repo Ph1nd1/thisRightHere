@@ -9,7 +9,7 @@ var io = require('socket.io')(server);
 
 const port = 3000;
 
-app.use(express.static("dist"));
+app.use(express.static("public"));
 
 io.on("connection", (socket) => {
   console.log("a user connected");
