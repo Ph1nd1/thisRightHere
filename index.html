@@ -8,10 +8,9 @@
   </head>
   <body>
     <div id="app"></div>
-    <script type="module">
-      import { io } from "https://cdn.socket.io/4.4.1/socket.io.esm.min.js";
-    
-      const socket = io();
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script>
+      var socket = io();
     </script>
     <script type="module" src="/src/main.js"></script>
   </body>
