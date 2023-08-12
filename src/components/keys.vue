@@ -1,6 +1,8 @@
 <script setup>
 import * as Tone from "tone";
 
+var socket = io();
+
 const keys = [
   { colour: "white b", key: "F3", control: "D" },
   { colour: "black as", key: "F#3", control: "" },
@@ -35,26 +37,15 @@ window.addEventListener(
   "keydown",
   (event) => {
     switch (event.key) {
+      case "l":
       case "ArrowDown":
-        playNote("B3");
-        break;
       case "w":
-        playNote("C4");
-        break;
       case "a":
-        playNote("D4");
-        break;
       case "s":
-        playNote("E4");
-        break;
       case "d":
-        playNote("F4");
-        break;
       case "f":
-        playNote("G4");
-        break;
       case "g":
-        playNote("A4");
+        socket.emit("note played", event.key);
         break;
       case "ArrowLeft":
       case "ArrowRight":
@@ -67,6 +58,40 @@ window.addEventListener(
   },
   true
 );
+
+socket.on("note played", (note) => {
+  console.log("playing", note);
+  switch (note) {
+    case "l":
+      playNote("C3");
+      break;
+    case "ArrowDown":
+      playNote("B3");
+      break;
+    case "w":
+      playNote("C4");
+      break;
+    case "a":
+      playNote("D4");
+      break;
+    case "s":
+      playNote("E4");
+      break;
+    case "d":
+      playNote("F4");
+      break;
+    case "f":
+      playNote("G4");
+      break;
+    case "g":
+      playNote("A4");
+      break;
+    case "ArrowLeft":
+    case "ArrowRight":
+    default:
+      return; // Quit when this doesn't handle the key event.
+  }
+});
 </script>
 <template>
   <ul class="set">
