@@ -6,8 +6,6 @@ var socket = io();
 
 const keyPlayed = reactive([])
 
-// https://archive.org/download/NeverGonnaGiveYouUpOriginal/Never%20Gonna%20Give%20You%20Up%20Original.mp3
-
 const sampler = new Tone.Sampler({
   urls: {
     C4: "C4.mp3",

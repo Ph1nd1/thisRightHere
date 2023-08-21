@@ -3,22 +3,16 @@ const app = express();
 const path = require("path");
 const http = require("http");
 const server = http.createServer(app);
-// const { Server } = require("socket.io");
-// const io = new Server(server);
-var io = require('socket.io')(server);
+var io = require("socket.io")(server);
 
 const port = process.env.PORT || 3000;
 
-app.use(express.static("public"));
+app.use(express.static("dist"));
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
-  socket.on('note played', (note) => {
-    io.emit('note played',`${note}`)
-    console.log('note: ' + note);
-  });
-  socket.on('disconnect', () => {
-    console.log('user disconnected');
+  io.emit("connection");
+  socket.on("note played", (note) => {
+    io.emit("note played", `${note}`);
   });
 });
 
