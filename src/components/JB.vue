@@ -1,18 +1,18 @@
 <script setup>
 import * as Tone from "tone";
 
+// code can't deploy
+// const buffer = new Tone.Buffer(
+//   "https://archive.org/download/NeverGonnaGiveYouUpOriginal/Never%20Gonna%20Give%20You%20Up%20Original.mp3"
+// );
+// //the player
+// const player = new Tone.Player({
+//   url: buffer,
+//   loop: true,
+// }).toDestination();
 
-const buffer = new Tone.Buffer(
-  "https://archive.org/download/NeverGonnaGiveYouUpOriginal/Never%20Gonna%20Give%20You%20Up%20Original.mp3"
-);
-//the player
-const player = new Tone.Player({
-  url: buffer,
-  loop: true,
-}).toDestination();
-
-// before a user gesture
-Tone.context.state === "suspended";
+// // before a user gesture
+// Tone.context.state === "suspended";
 
 const sampler = new Tone.Sampler({
   urls: {
@@ -23,17 +23,17 @@ const sampler = new Tone.Sampler({
 }).toDestination();
 
 const playNote1 = () => {
-  // Tone.loaded().then(() => {
-  //   sampler.triggerAttackRelease(["Eb4", "G4", "Bb4"], 0.2);
-  // });
-  player.start();
+  Tone.loaded().then(() => {
+    sampler.triggerAttackRelease(["Eb4", "G4", "Bb4"], 0.2);
+  });
+  // player.start();
 };
 
 const playNote2 = () => {
-  // Tone.loaded().then(() => {
-  //   sampler.triggerAttackRelease(["Eb4", "G4", "C5"], 0.2);
-  // });
-  player.stop();
+  Tone.loaded().then(() => {
+    sampler.triggerAttackRelease(["Eb4", "G4", "C5"], 0.2);
+  });
+  // player.stop();
 };
 
 const playNote3 = () => {
