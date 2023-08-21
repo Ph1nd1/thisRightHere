@@ -1,11 +1,21 @@
 <script setup>
 import JB from "./components/JB.vue";
 import keys from "./components/keys.vue";
+import { ref } from "vue";
+
+var socket = io();
+
+const connection = ref("");
+
+socket.on("connection", () => {
+  connection.value = "You are connected and listening...";
+});
 </script>
 
 <template>
   <main>
-    <h1>let's play</h1>
+    <h1>Family Keys</h1>
+    <p>{{ connection }}</p>
     <JB />
     <keys />
   </main>
