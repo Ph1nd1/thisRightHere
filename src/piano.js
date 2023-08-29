@@ -4,15 +4,6 @@ var socket = io();
 
 const keyPlayed = [];
 
-const buffer = new Tone.Buffer(
-  "https://archive.org/download/NeverGonnaGiveYouUpOriginal/Never%20Gonna%20Give%20You%20Up%20Original.mp3"
-);
-//the player
-const player = new Tone.Player({
-  url: buffer,
-  loop: true,
-}).toDestination();
-
 const sampler = new Tone.Sampler({
   urls: {
     C4: "C4.mp3",
@@ -70,11 +61,7 @@ socket.on("note played", (note) => {
       playNote("A4");
       break;
     case "ArrowLeft":
-      player.start()
-      break;
     case "ArrowRight":
-      player.stop()
-      break;
     default:
       return; // Quit when this doesn't handle the key event.
   }
