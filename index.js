@@ -1,25 +1,21 @@
 const express = require("express");
 const app = express();
+const path = require("path");
 const http = require("http");
 const server = http.createServer(app);
-const { Server } = require("socket.io");
-const io = new Server(server);
+var io = require("socket.io")(server);
+
+const port = process.env.PORT || 3000;
 
 app.use(express.static("dist"));
 
 io.on("connection", (socket) => {
-  console.log("a user connected");
-  socket.emit("connected");
-
+  io.emit("connected");
   socket.on("note played", (note) => {
     io.emit("note played", `${note}`);
   });
-
-  socket.on("disconnect", () => {
-    console.log("user disconnected");
-  });
 });
 
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+server.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
 });
