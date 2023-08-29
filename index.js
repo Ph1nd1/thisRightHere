@@ -5,9 +5,6 @@ const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
 
-// app.get("/", (req, res) => {
-//   res.sendFile(__dirname + "/index.html", "js");
-// });
 app.use(express.static("dist"));
 
 io.on("connection", (socket) => {
