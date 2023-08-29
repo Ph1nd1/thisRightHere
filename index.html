@@ -2,16 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="/favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>This right here</title>
   </head>
   <body>
-    <div id="app"></div>
+    <h1>Family Keys</h1>
+    <p id="connection"></p>
+    <p id="keyPlayed"></p>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script>
       var socket = io();
+
+      socket.on("connected", () => {
+        document.getElementById("connection").innerHTML =
+          "Connected and listening...";
+      });
     </script>
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/piano.js"></script>
   </body>
 </html>
