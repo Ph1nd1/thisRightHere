@@ -30,6 +30,7 @@
 
       socket.on("err", (msg) => {
         document.getElementById("connection").innerHTML = msg;
+        document.getElementById("instruction").innerHTML = "";
         button.style.display = "none";
       });
     </script>
