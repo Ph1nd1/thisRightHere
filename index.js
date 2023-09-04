@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static("dist"));
 
-var connectionsLimit = 8; // 4 ppl
+var connectionsLimit = 8; // 8 = 4 ppl
 
 io.on("connection", (socket) => {
   io.emit("connected", "Connected and listening...");
