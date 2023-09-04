@@ -9,11 +9,21 @@ const port = process.env.PORT || 3000;
 
 app.use(express.static("dist"));
 
+var connectionsLimit = 8; // 4 ppl
+
 io.on("connection", (socket) => {
-  io.emit("connected");
+  io.emit("connected", "Connected and listening...");
+
   socket.on("note played", (note) => {
     io.emit("note played", `${note}`);
   });
+
+  if (io.engine.clientsCount > connectionsLimit) {
+    socket.emit("err", "sorry, we've reached the limit of connections");
+    socket.disconnect();
+
+    return;
+  }
 });
 
 server.listen(port, () => {

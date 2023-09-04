@@ -4,19 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/styles.css">
     <title>This right here</title>
   </head>
   <body>
     <h1>Family Keys</h1>
     <p id="connection"></p>
+    <p class="instruction">First adjust your volume to high, then click the button below</p>
+    <button class="button-17" role="button">Click here</button>
     <p id="keyPlayed"></p>
     <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
     <script>
       var socket = io();
 
-      socket.on("connected", () => {
-        document.getElementById("connection").innerHTML =
-          "Connected and listening...";
+      socket.on("connected", (msg) => {
+        document.getElementById("connection").innerHTML = msg;
+      });
+      socket.on("err", (msg) => {
+        document.getElementById("connection").innerHTML = msg;
+      });
+      const button = document.querySelector("button");
+
+      button.addEventListener("click", (event) => {
+        socket.emit("note played", 'l');
       });
     </script>
     <script type="module" src="/src/piano.js"></script>
